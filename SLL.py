@@ -41,35 +41,152 @@ class SingleLinkedList:
 		else:
 			print(x, " not founnd in list")
 			return False
+	
 	def insert_in_beginning(self, data):
-		pass
+		temp = Node(data)
+		temp.link = self.start
+		self.start = temp
 		
 	def insert_at_end(self, data):
-		pass
+		temp = Node(data)
+		if self.start is None:
+			self.start = temp
+			return
+		
+		p = self.start
+		while p.link is not None:
+			p = p.link
+		p.link = temp
 		
 	def create_list(self):
+		n = int(input("Enter number of nodes : "))
+		if n ==0:
+			return
+		for i in range(n):
+			data = int(input("Enter the element to be inserted : "))
+			self.insert_at_end(data)
 		pass
 		
 	def insert_after(self, data, x):
-		pass
+		p=self.start
+		while p is not None:
+			if p.info == x:
+				break
+			p = p.link
+		
+		if p is None:
+			print(x," is not present in the list")
+		else:
+			temp = Node(data)
+			temp.link = p.link 
+			p.link = temp
 		
 	def insert_before(self, data, x):
-		pass
+		# If node is empty
+		if self.start is None:
+			print("List is empty")
+			return
+		
+		#If x is first node
+		if self.start.info == x:
+			temp = Node(data)
+			temp.link = self.start
+			self.start = temp
+			return 
+	
+		# Find reference to predecessor of node containing x
+		p = self.start
+		while p.link is not None:
+			if p.link.info == x:
+				break
+			p = p.link
+		
+		if p is None:
+			print(x," is not present in the list")
+		else:
+			temp = Node(data)
+			temp.link = p.link 
+			p.link = temp
 		
 	def insert_at_position(self, data, k):
-		pass
+		if k == 1:
+			temp = Node(data)
+			temp.link = self.start
+			self.start = temp
+			return 
+	
+		p = self.start
+		i = 1
+		while i<k-1 and p is not None:
+			p = p.link
+			i += 1
+		
+		if p is None:
+			print(x," is not present in the list")
+		else:
+			temp = Node(data)
+			temp.link = p.link 
+			p.link = temp
 		
 	def delete_node(self, x):
-		pass
+		if self.start == None:
+			print("List is empty")
+			return
+			
+		if x == self.start.info:
+			self.start = self.start.link
+			return
+		p = self.start
+		while p.link is not None:
+			if p.link.info == x:
+				if p.link.link is not None:
+					p.link = p.link.link
+					return
+				else:
+					p.link = None
+					return
+			p = p.link
+		if p.link is None:
+			print(x," elemet is not present")
+		
+		
+
 		
 	def delete_first_node(self):
-		pass
+		if self.start == None:
+			print("List is empty")
+			return 
+		if self.start.link == None:
+			self.start = None
+		else:
+			self.start = self.start.link
+			
 		
 	def delete_last_node(self):
-		pass
+		if self.start == None:
+			print("List is empty")
+			return
+		if self.start.link == None:
+			self.start = None
+		else:
+			p = self.start
+			while p.link.link is not None:
+				p = p.link
+			p.link = None
+
 		
 	def reverse_list(self):
-		pass
+		if self.start == None:
+			print("List is empty")
+			return
+		prev = None
+		p = self. start
+		while p is not None:
+			next = p.link
+			p.link = prev
+			prev = p
+			p = next
+		self.start = prev
 		
 	def bubble_sort_exdata(self):
 		pass
