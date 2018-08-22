@@ -144,6 +144,22 @@ class DoubleLinkedList(object):
 			p = p.next
 		if p is None:
 			print(x, " is not present")
+	
+	def reverse_list(self):
+		if self.start is None:
+			return
+			
+		p1 = self.start
+		p2 = p1.next
+		p1.next=None
+		p1.prev = p2
+		
+		while p2 is not None:
+			p2.prev = p2.next
+			p2.next = p1
+			p1 = p2 
+			p2 = p2.prev
+		self.start = p1 
 		
 	
 	def create_list(self):
